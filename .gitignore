@@ -1,3 +1,20 @@
+<<<<<<< HEAD
 # Created by .ignore support plugin (hsz.mobi)
 .idea
 *.iml
+*.class
+
+*.log
+
+*.ctxt
+
+.mtj.tmp/
+
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+hs_err_pid*
