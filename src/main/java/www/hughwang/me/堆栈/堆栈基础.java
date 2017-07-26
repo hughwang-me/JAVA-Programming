@@ -11,6 +11,9 @@ public class 堆栈基础 {
         String name;
         int age;
 
+        public Person() {
+        }
+
         public void log(){
             L.d(toString());
         }
