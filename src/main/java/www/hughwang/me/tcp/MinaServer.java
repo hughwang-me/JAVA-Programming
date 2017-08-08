@@ -16,7 +16,7 @@ public class MinaServer {
 
 
 
-    private final static int PORT = 9091;
+    private final static int PORT = 9092;
 
     private final static int READ_BUFFER_SIZE = 1024;
 
