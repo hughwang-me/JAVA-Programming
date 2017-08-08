@@ -1,9 +1,11 @@
 package www.hughwang.me.tcp;
 
+import org.apache.mina.core.buffer.IoBuffer;
 import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
 import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
+import www.hughwang.me.utils.L;
 
 /**
  * Created by wanghuan on 2017/8/8.
@@ -32,7 +34,25 @@ public class MinaServerHandler extends IoHandlerAdapter {
 
     @Override
     public void messageReceived(IoSession session, Object message) throws Exception {
-        super.messageReceived(session, message);
+        IoBuffer ioBuffer = (IoBuffer) message;
+        byte[] bytes = new byte[ioBuffer.limit()];
+        ioBuffer.get(bytes);
+        String str = "";
+        for (byte b : bytes) {
+            String s16 = Integer.toHexString(b);
+            if(s16.length() == 1){
+                str += "0" + s16;
+            }else if(s16.length() == 2){
+                str += s16;
+            }else if(s16.length() > 2){
+                str += s16.substring(s16.length() - 2, s16.length());
+            }else {
+                str += "00";
+            }
+        }
+        L.d(" 消息内容 ：" + str);
+
+        session.write("消息收到!".getBytes());
     }
 
     @Override
