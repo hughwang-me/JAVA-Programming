@@ -6,6 +6,7 @@ import org.apache.mina.core.filterchain.IoFilterAdapter;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
 import org.apache.mina.core.write.WriteRequest;
+import www.hughwang.me.utils.DateUtils;
 import www.hughwang.me.utils.L;
 
 /**
@@ -15,7 +16,7 @@ public class MinaServerLogFilter extends IoFilterAdapter {
 
     @Override
     public void sessionCreated(NextFilter nextFilter, IoSession session) throws Exception {
-        L.d("新的连接创建 : " + session.getId());
+        L.d("新的连接创建 : [" + session.getId() + "] 当前时间 : " + DateUtils.getCurrentTimeFormat());
         nextFilter.sessionCreated(session);
     }
 
@@ -27,13 +28,13 @@ public class MinaServerLogFilter extends IoFilterAdapter {
 
     @Override
     public void sessionIdle(NextFilter nextFilter, IoSession session, IdleStatus status) throws Exception {
-        L.d("连接闲置中 : " + session.getId() + " 状态 : " + status);
+        L.d("连接闲置中 : [" + session.getId() + "] 状态 : " + status + " 当前时间 : " + DateUtils.getCurrentTimeFormat());
         nextFilter.sessionIdle(session , status);
     }
 
     @Override
     public void sessionClosed(NextFilter nextFilter, IoSession session) throws Exception {
-        L.d("连接被关闭 : " + session.getId());
+        L.d("连接被关闭 : [" + session.getId() + "] 当前时间 : " + DateUtils.getCurrentTimeFormat());
         nextFilter.sessionClosed(session);
     }
 

@@ -52,7 +52,7 @@ public class MinaServerHandler extends IoHandlerAdapter {
         }
         L.d("消息内容 ：" + str.toUpperCase());
 
-        session.write("消息收到!".getBytes("UTF-8"));
+        session.write("msg received!".getBytes("UTF-8"));
     }
 
     @Override
