@@ -50,14 +50,22 @@ public class MinaServerHandler extends IoHandlerAdapter {
                 str += "00";
             }
         }
-        L.d(" 消息内容 ：" + str);
+        L.d("消息内容 ：" + str.toUpperCase());
 
-        session.write("消息收到!".getBytes());
+        session.write("消息收到!".getBytes("UTF-8"));
     }
 
     @Override
     public void messageSent(IoSession session, Object message) throws Exception {
         super.messageSent(session, message);
+    }
+
+
+    @Override
+    public void exceptionCaught(IoSession session, Throwable cause) throws Exception {
+        L.d("连接发生异常 : " + session.getId());
+        String msg = cause.getMessage();
+        L.d("异常信息 : " + msg);
     }
 
 }
