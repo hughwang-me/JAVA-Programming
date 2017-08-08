@@ -16,28 +16,31 @@ public class MinaServerLogFilter extends IoFilterAdapter {
     @Override
     public void sessionCreated(NextFilter nextFilter, IoSession session) throws Exception {
         L.d("新的连接创建 : " + session.getId());
+        nextFilter.sessionCreated(session);
     }
 
     @Override
     public void sessionOpened(NextFilter nextFilter, IoSession session) throws Exception {
         L.d("新的连接被打开 : " + session.getId());
+        nextFilter.sessionOpened(session);
     }
 
     @Override
     public void sessionIdle(NextFilter nextFilter, IoSession session, IdleStatus status) throws Exception {
-        L.d("连接闲置中 : " + session.getId());
+        L.d("连接闲置中 : " + session.getId() + " 状态 : " + status);
+        nextFilter.sessionIdle(session , status);
     }
 
     @Override
     public void sessionClosed(NextFilter nextFilter, IoSession session) throws Exception {
         L.d("连接被关闭 : " + session.getId());
+        nextFilter.sessionClosed(session);
     }
 
     @Override
     public void messageReceived(NextFilter nextFilter, IoSession session, Object message) throws Exception {
         L.d("接收到新消息 : " + session.getId());
-
-
+        nextFilter.messageReceived(session , message);
     }
 
     @Override
@@ -45,6 +48,7 @@ public class MinaServerLogFilter extends IoFilterAdapter {
         L.d("已经发送消息 : " + session.getId());
         String text = writeRequest.getMessage().toString();
         L.d("消息内容是 : " + text);
+        nextFilter.messageSent(session , writeRequest);
     }
 
 }
