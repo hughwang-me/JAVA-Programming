@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
  */
 public class L {
 
-    public static final String SERVER_TAG = "上海 : 9092";
+    public static final String SERVER_TAG = "上海 : 9095";
 
     private static Logger logger = Logger.getLogger(L.class);
 
