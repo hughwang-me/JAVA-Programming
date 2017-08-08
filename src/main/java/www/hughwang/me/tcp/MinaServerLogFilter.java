@@ -48,7 +48,7 @@ public class MinaServerLogFilter extends IoFilterAdapter {
     public void messageSent(NextFilter nextFilter, IoSession session, WriteRequest writeRequest) throws Exception {
         L.d("已经发送消息 : " + session.getId());
         String text = writeRequest.getMessage().toString();
-        L.d("消息内容是 : " + text);
+        L.d("消息内容是 : " + text + " 当前时间 : " + DateUtils.getCurrentTimeFormat());
         nextFilter.messageSent(session , writeRequest);
     }
 
