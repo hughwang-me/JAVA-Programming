@@ -18,14 +18,14 @@ public class MinaServer {
 
     private final static int READ_BUFFER_SIZE = 1024;
 
-    private final static int SESSION_IDLE = 3 * 60 * 1000;
+    private final static int SESSION_IDLE = 30 * 1000;
 
 
-    public void init(){
+    public static void main(String[] args){
         L.e("Start Mina Server at port : " + PORT);
         SocketAcceptor socketAcceptor = new NioSocketAcceptor();
 
-        socketAcceptor.getFilterChain().addFirst("bytesToStringFilter" , new MinaServerLogFilter());
+        socketAcceptor.getFilterChain().addFirst("logFilter" , new MinaServerLogFilter());
 
         socketAcceptor.setHandler(new MinaServerHandler());
         SocketSessionConfig socketSessionConfig = socketAcceptor.getSessionConfig();
